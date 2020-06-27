@@ -24,3 +24,5 @@ def category_by_list(request, ctg_name):
     post_list = Post.objects.filter(category=cteg_obj)
     context = {'posts': post_list, 'catg_name': ctg_name}
     return render(request, 'blog/post_by_category.html', context)
+
+    

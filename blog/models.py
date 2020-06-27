@@ -25,5 +25,5 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return "{} - {}".format(self.title, self.author)
 
