@@ -1,0 +1,28 @@
+{% extends "dashbord_base/base.html" %}
+
+{% block content %}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h1>
+            This is profile page
+        </h1>
+    </div>
+    <div class="card-body">
+        <h3>User Name: {{ user.username }}</h3>
+        <h5>Phone Number: {{ profile.phone }}</h5>
+        
+        <img src="{{ profile.photo.url }}" alt="">
+
+
+<br>
+<br>
+
+<a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+    </div>
+
+</div>
+
+{% endblock content %}

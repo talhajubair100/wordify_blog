@@ -1,5 +1,14 @@
-from django.shortcuts import render
-from .models import Category, Post, Profile
+from django.shortcuts import render, redirect
+from .models import Category, Post, Comment
+from .forms import *
+
+
+def create_post(request):
+    forms = CreatePostForm()
+    context = {
+        'forms': forms
+    }
+    return render(request, "blog/create_post.html", context)
 
 def search_post(request):
     if request.method == 'POST':
@@ -14,7 +23,21 @@ def detail_post(request, post_id):
     try:
         post_obj = Post.objects.get(id=post_id)
         #profile_obj = Profile.objects.get(user=post_obj.author)
-        context = {'post': post_obj}
+        comments = post_obj.comments.all()
+        form = CommentForm()
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment_form = form.save(commit=False)
+                comment_form.post = post_obj
+                comment_form.save()
+                return redirect(post_obj)
+
+        context = {
+            'post': post_obj, 
+            'comments': comments, 
+            'form': form
+            }
         return render(request, 'blog/detail_post.html', context)
     except:
         return render(request, '404.html')
@@ -25,4 +48,3 @@ def category_by_list(request, ctg_name):
     context = {'posts': post_list, 'catg_name': ctg_name}
     return render(request, 'blog/post_by_category.html', context)
 
-    
