@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-date')
     context = {
                 'posts': posts,
             }

@@ -5,6 +5,13 @@ from .forms import *
 
 def create_post(request):
     forms = CreatePostForm()
+    if request.method == 'POST':
+        forms = CreatePostForm(request.POST, request.FILES)
+        if forms.is_valid():
+            post_form = forms.save(commit=False)
+            post_form.author = request.user
+            post_form.save()
+            return redirect('/')
     context = {
         'forms': forms
     }

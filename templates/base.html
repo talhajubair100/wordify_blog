@@ -30,10 +30,6 @@
           <div class="container">
             <div class="row">
               <div class="col-9 social">
-                <a href="#"><span class="fa fa-twitter"></span></a>
-                <a href="#"><span class="fa fa-facebook"></span></a>
-                <a href="#"><span class="fa fa-instagram"></span></a>
-                <a href="#"><span class="fa fa-youtube-play"></span></a>
               </div>
               <div class="col-3 search-top">
                 <!-- <a href="#"><span class="fa fa-search"></span></a> -->
@@ -51,7 +47,7 @@
           <div class="row pt-5">
             <div class="col-12 text-center">
               <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
-              <h1 class="site-logo"><a href="/">Wordify</a></h1>
+              <h1 class="site-logo"><a href="/">Envision</a></h1>
             </div>
           </div>
         </div>
@@ -143,15 +139,10 @@
                 <div class="bio text-center">
                   <img src="{{ request.user.profile.photo.url }}" alt="Image Placeholder" class="img-fluid">
                   <div class="bio-body">
-                    <h2>{{ request.user.profile.full_name|lower }}</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
-                    <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
-                    <p class="social">
-                      <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                      <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                      <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                      <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                    </p>
+                    <h2>{{ request.user.username|upper }}</h2>
+                    <p class="lead">{{ request.user.profile.phone }}</p>
+                    <p><a href="{% url 'profile' %}" class="btn btn-primary btn-sm rounded">Profile View</a></p>
+                    
                   </div>
                 </div>
               </div>
@@ -189,23 +180,7 @@
               </div>
               <!-- END sidebar-box -->
 
-              <div class="sidebar-box">
-                <h3 class="heading">Tags</h3>
-                <ul class="tags">
-                  <li><a href="#">Travel</a></li>
-                  <li><a href="#">Adventure</a></li>
-                  <li><a href="#">Food</a></li>
-                  <li><a href="#">Lifestyle</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Freelancing</a></li>
-                  <li><a href="#">Travel</a></li>
-                  <li><a href="#">Adventure</a></li>
-                  <li><a href="#">Food</a></li>
-                  <li><a href="#">Lifestyle</a></li>
-                  <li><a href="#">Business</a></li>
-                  <li><a href="#">Freelancing</a></li>
-                </ul>
-              </div>
+             
             </div>
             <!-- END sidebar -->
 
@@ -250,17 +225,7 @@
                 
                 <div class="col-md-4">
                   
-                  <div class="mb-5">
-                    <h3>Social</h3>
-                    <ul class="list-unstyled footer-social">
-                      <li><a href="#"><span class="fa fa-twitter"></span> Twitter</a></li>
-                      <li><a href="#"><span class="fa fa-facebook"></span> Facebook</a></li>
-                      <li><a href="#"><span class="fa fa-instagram"></span> Instagram</a></li>
-                      <li><a href="#"><span class="fa fa-vimeo"></span> Vimeo</a></li>
-                      <li><a href="#"><span class="fa fa-youtube-play"></span> Youtube</a></li>
-                      <li><a href="#"><span class="fa fa-snapchat"></span> Snapshot</a></li>
-                    </ul>
-                  </div>
+                  
                 </div>
               </div>
             </div>
