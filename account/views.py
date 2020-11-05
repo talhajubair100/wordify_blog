@@ -17,13 +17,13 @@ def dashboard(request):
 @login_required
 def profile(request):
     user = request.user
-    profile = Profile.objects.get(user=user)
+    profile = Profile.objects.get_or_create(user=user)
     context = {'profile': profile, 'user': user}
 
     return render(request, 'account/profile.html', context)
 
 
-@login_required    
+@login_required
 def create_profile(request):
     form = ProfileForm()
     if request.method == 'POST':
@@ -36,7 +36,7 @@ def create_profile(request):
     context = {'form': form}
     return render(request, 'account/create_profile.html', context)
 
-@login_required    
+@login_required
 def edit_profile(request):
     profile = Profile.objects.get(user=request.user)
     form = ProfileForm(instance=profile)
@@ -71,7 +71,7 @@ def user_login(request):
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             if user:
-                login(request, user) 
+                login(request, user)
                 return redirect('/')
             context = {
                 'form': form,

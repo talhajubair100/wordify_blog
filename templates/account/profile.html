@@ -13,9 +13,9 @@
     <div class="card-body">
         <h3>User Name: {{ user.username }}</h3>
         <h5>Phone Number: {{ profile.phone }}</h5>
-        
-        <img src="{{ profile.photo.url }}" alt="">
-
+        {% if profile.photo %}
+        <img class="img-fluid" style="height: 100%; width: 50%;" src="{{ profile.photo.url }}" alt="">
+        {% endif %}
 
 <br>
 <br>
