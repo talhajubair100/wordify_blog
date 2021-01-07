@@ -1,21 +1,40 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
+from taggit.models import Tag
 from .models import Category, Post, Comment
 from .forms import *
+#from django.template.defaultfilters import slugify
 
 
 def create_post(request):
     forms = CreatePostForm()
+    common_tags = Post.tags.most_common()[:4]
+
     if request.method == 'POST':
         forms = CreatePostForm(request.POST, request.FILES)
         if forms.is_valid():
             post_form = forms.save(commit=False)
             post_form.author = request.user
             post_form.save()
+            forms.save_m2m()
             return redirect('/')
     context = {
-        'forms': forms
+        'forms': forms,
+        'common_tags': common_tags
+
     }
     return render(request, "blog/create_post.html", context)
+
+def tagged(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    common_tags = Post.tags.most_common()[:4]
+    posts = Post.objects.filter(tags=tag)
+    context = {
+        'tag':tag,
+        'common_tags':common_tags,
+        'posts':posts,
+    }
+    return render(request, 'blog/create_post.html', context)
+
 
 def search_post(request):
     if request.method == 'POST':
